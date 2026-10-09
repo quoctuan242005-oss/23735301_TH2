@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ShopStack from '@navigation/ShopStack';
 import CartScreen from '@screens/CartScreen';
@@ -29,6 +30,9 @@ export default function MainTabs() {
       options={{
         title: 'Cửa hàng',
         tabBarLabel: 'Cửa hàng',
+        tabBarIcon: () => (
+          <Text style={{ fontSize: 20 }}>🏪</Text>
+        ),
       }}
     />
   );
@@ -48,6 +52,9 @@ export default function MainTabs() {
           fontSize: 10,
           fontWeight: '700',
         },
+        tabBarIcon: () => (
+          <Text style={{ fontSize: 20 }}>🛒</Text>
+        ),
       }}
     />
   );
@@ -60,6 +67,9 @@ export default function MainTabs() {
       options={{
         title: 'Cá nhân',
         tabBarLabel: 'Tôi',
+        tabBarIcon: () => (
+          <Text style={{ fontSize: 20 }}>👤</Text>
+        ),
       }}
     />
   );
@@ -74,7 +84,7 @@ export default function MainTabs() {
         tabBarStyle: {
           backgroundColor: COLORS.surface,
           borderTopColor: COLORS.border,
-          height: 60,
+          height: 65,
           paddingBottom: 8,
           paddingTop: 6,
         },
