@@ -1,97 +1,110 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Họ và tên: PHAM QUOC TUAN | MSSV: 23735301 | URL: https://github.com/quoctuan242005/23735301_TH2.git | Stamp: #617755 | Số cuối: 1 | VARIANT: { watermarkAtTop: false, authField: 'phone', tabOrder: 'shopFirst', hapticOnAdd: 'selection', shipFormula: 'B', detailPresentation: 'card' }
 
-# Getting Started
+## BÀI KIỂM TRA THỰC HÀNH 2 (BKT2) - DỰ ÁN KTXGO
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+- **Môn học:** Lập trình cho thiết bị di động
+- **Sinh viên:** PHAM QUOC TUAN
+- **MSSV:** 23735301
+- **Số cuối MSSV:** 1
+- **Mã Stamp:** #617755
+- **Công thức tính Stamp:** `examStamp()` băm chuỗi `TH2|23735301|PHAM QUOC TUAN`
+- **Phòng giao demo:** P.401 (`ROOM_LABEL`)
+- **Phí ship nền:** 9.000 đ (`BASE_SHIP_FEE`)
+- **Độ trễ Debounce:** 400 ms (`DEBOUNCE_MS`)
+- **Stale Time React Query:** 11.000 ms (`STALE_TIME_MS`)
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 1. Cấu hình biến thể (VARIANT)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+| Tiêu chí | Cấu hình cho số cuối 1 |
+| :--- | :--- |
+| **Dòng tên / Watermark** | Dưới màn hình (`watermarkAtTop: false`) |
+| **Ô Đăng nhập (Auth)** | Số điện thoại (`authField: 'phone'`) |
+| **Thứ tự Tab** | Cửa hàng trước (`tabOrder: 'shopFirst'`) |
+| **Haptic thêm giỏ** | Selection feedback (`hapticOnAdd: 'selection'`) |
+| **Công thức Phí ship** | Công thức B: `BASE_SHIP_FEE + Math.round(km * 1500) + 2000` |
+| **Detail Presentation** | Card (`detailPresentation: 'card'`) |
 
-```sh
-# Using npm
+---
+
+## 2. Cấu trúc thư mục dự án
+
+```
+KTXGo_23735301/
+├── README.md
+├── App.tsx
+├── package.json
+├── babel.config.js
+├── tsconfig.json
+└── src/
+    ├── constants/
+    │   ├── student.ts
+    │   └── theme.ts
+    ├── hooks/
+    │   ├── useCampusLocation.ts
+    │   └── useDebouncedValue.ts
+    ├── services/
+    │   ├── apiClient.ts
+    │   └── productApi.ts
+    ├── stores/
+    │   ├── authStore.ts
+    │   └── cartStore.ts
+    ├── navigation/
+    │   ├── AuthStack.tsx
+    │   ├── MainTabs.tsx
+    │   ├── RootNavigator.tsx
+    │   └── ShopStack.tsx
+    ├── components/
+    │   ├── ProductCard.tsx
+    │   └── Watermark.tsx
+    └── screens/
+        ├── CartScreen.tsx
+        ├── DetailScreen.tsx
+        ├── HomeScreen.tsx
+        ├── LoginScreen.tsx
+        └── MeScreen.tsx
+```
+
+---
+
+## 3. Các chức năng đã hoàn thành
+
+### Câu 1: Kiến trúc điều hướng + định danh cá nhân (3 điểm)
+- [x] Khởi tạo React Native CLI + TypeScript, cấu hình path aliases (`@screens`, `@components`, `@constants`, `@services`, `@stores`, `@hooks`, `@navigation`).
+- [x] Định danh đầy đủ trong `student.ts`, `examStamp()`, mã stamp hiển thị trên mọi màn hình.
+- [x] Luồng điều hướng `RootNavigator` chuyển đổi mượt mà giữa `AuthStack` và `MainTabs` dựa theo trạng thái đăng nhập trong Zustand.
+- [x] Tab Bar hiển thị số lượng giỏ hàng (`tabBarBadge`) tự động cập nhật và ẩn khi giỏ hàng trống.
+- [x] Safe area handling chuẩn xác cho mọi thiết bị.
+
+### Câu 2: Home lưới 2 cột + React Query (3 điểm)
+- [x] Hiển thị danh sách món bằng `@shopify/flash-list` với `numColumns={2}`, `estimatedItemSize={240}` và `keyExtractor` có MSSV.
+- [x] Tách component `ProductCard` riêng biệt, giao diện card đẹp mắt và tối ưu.
+- [x] Thanh tìm kiếm tích hợp hook `useDebouncedValue` độ trễ `DEBOUNCE_MS = 400ms`.
+- [x] Quản lý Server State với `@tanstack/react-query` và Axios instance (`apiClient.ts`) đính kèm header `X-Student-Id: 23735301`.
+- [x] Xử lý đầy đủ 3 trạng thái: Đang tải (Loading), Đã có dữ liệu, và Báo lỗi có kèm MSSV kèm nút Thử lại (`refetch`).
+- [x] Tính năng Pull-to-Refresh kéo để làm mới danh sách.
+
+### Câu 3: Giỏ hàng Persist + Location / Haptic / Permissions (4 điểm)
+- [x] Quản lý Client State giỏ hàng bằng `zustand` kết hợp `persist` middleware với `AsyncStorage`, lưu với key `ktxgo-cart-23735301`.
+- [x] Các thao tác giỏ hàng: Thêm món, Tăng/Giảm số lượng, Xóa món, Xóa toàn bộ giỏ hàng, tính tổng tiền hàng và tổng thanh toán.
+- [x] Hiệu ứng rung phản hồi xúc giác `react-native-haptic-feedback` khi bấm thêm món vào giỏ.
+- [x] Màn hình Chi tiết món hiển thị thông tin, nút thêm vào giỏ có Alert ngắn kèm MSSV.
+- [x] Màn hình Cá nhân (`MeScreen`) quản lý thông tin sinh viên, mã Stamp, Token phiên đăng nhập rút gọn, và nút Đăng xuất.
+- [x] Hook `useCampusLocation` xử lý runtime permissions 3 nhánh: `granted`, `denied`, `blocked` (mở Cài đặt hệ thống bằng `Linking.openSettings()`).
+- [x] Tính khoảng cách GPS bằng công thức Haversine và tính phí ship theo Công thức B phản ánh trực tiếp sang tab Giỏ hàng.
+
+---
+
+## 4. Hướng dẫn chạy ứng dụng
+
+```bash
+# 1. Cài đặt dependencies
+npm install
+
+# 2. Chạy Metro Bundler
 npm start
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+# 3. Chạy trên thiết bị Android
 npm run android
-
-# OR using Yarn
-yarn android
 ```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
