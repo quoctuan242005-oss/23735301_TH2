@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '@constants/theme';
-import { STUDENT, VARIANT } from '@constants/student';
+import { VARIANT } from '@constants/student';
 import { useAuthStore } from '@stores/authStore';
 import Watermark from '@components/Watermark';
 
@@ -21,8 +21,8 @@ export default function LoginScreen() {
   const login = useAuthStore((state) => state.login);
 
   const placeholderText = isEmail
-    ? `Nhập email (${STUDENT.mssv}@sv.iuh.edu.vn)`
-    : `Nhập số điện thoại (${STUDENT.mssv})`;
+    ? 'Nhập địa chỉ email của bạn'
+    : 'Nhập số điện thoại của bạn';
 
   const handleLogin = () => {
     const trimmed = inputValue.trim();
