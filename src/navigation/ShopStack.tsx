@@ -7,7 +7,7 @@ import { COLORS } from '@constants/theme';
 
 export type ShopStackParamList = {
   Home: undefined;
-  Detail: { id: number };
+  Detail: { id: string | number };
 };
 
 const Stack = createNativeStackNavigator<ShopStackParamList>();
