@@ -31,7 +31,7 @@ export default function MainTabs() {
         title: 'Cửa hàng',
         tabBarLabel: 'Cửa hàng',
         tabBarIcon: () => (
-          <Text style={{ fontSize: 20 }}>🏪</Text>
+          <Text style={{ fontSize: 20 }}>🏠</Text>
         ),
       }}
     />
