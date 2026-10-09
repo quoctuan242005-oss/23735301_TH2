@@ -153,23 +153,6 @@ export default function MeScreen() {
             )}
           </View>
 
-          {/* App Info Card */}
-          <Text style={styles.sectionHeader}>Thông tin hệ thống</Text>
-          <View style={styles.infoCard}>
-            <Text style={styles.infoRow}>
-              Ứng dụng: <Text style={styles.infoBold}>KTXGo</Text>
-            </Text>
-            <Text style={styles.infoRow}>
-              Bài thi: <Text style={styles.infoBold}>TH2 React Native</Text>
-            </Text>
-            <Text style={styles.infoRow}>
-              Biến thể (Variant):{' '}
-              <Text style={styles.infoBold}>
-                {VARIANT.shipFormula} · {VARIANT.authField} · {VARIANT.tabOrder}
-              </Text>
-            </Text>
-          </View>
-
           {/* Logout Button */}
           <TouchableOpacity
             style={styles.logoutButton}
@@ -365,23 +348,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '800',
     color: COLORS.secondary,
-  },
-  infoCard: {
-    backgroundColor: COLORS.surface,
-    borderRadius: 14,
-    padding: 14,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    marginBottom: 20,
-  },
-  infoRow: {
-    fontSize: 13,
-    color: COLORS.textLight,
-    marginVertical: 2,
-  },
-  infoBold: {
-    color: COLORS.text,
-    fontWeight: '700',
   },
   logoutButton: {
     backgroundColor: '#FEE2E2',
