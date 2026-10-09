@@ -11,9 +11,11 @@ export default function Watermark() {
       pointerEvents="none"
       style={[styles.container, isTop ? styles.topContainer : styles.bottomContainer]}
     >
-      <Text style={styles.text}>
-        TH2 · {STUDENT.mssv} · {STUDENT.hoTen} · #{examStamp()}
-      </Text>
+      <View style={styles.badge}>
+        <Text style={styles.text}>
+          TH2 · {STUDENT.mssv} · {STUDENT.hoTen} · #{examStamp()}
+        </Text>
+      </View>
     </View>
   );
 }
@@ -28,16 +30,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   topContainer: {
-    top: 6,
+    top: 8,
   },
   bottomContainer: {
-    bottom: 6,
+    bottom: 8,
+  },
+  badge: {
+    backgroundColor: '#DBEAFE', // Nền xanh nhạt
+    borderWidth: 1,
+    borderColor: '#93C5FD', // Viền xanh
+    borderRadius: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    shadowColor: '#1D4ED8',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.12,
+    shadowRadius: 3,
+    elevation: 2,
   },
   text: {
-    color: COLORS.textLight,
+    color: '#1E3A8A', // Chữ xanh đậm rõ nét
     fontSize: 11,
-    fontWeight: '600',
-    opacity: 0.85,
+    fontWeight: '700',
     textAlign: 'center',
   },
 });
