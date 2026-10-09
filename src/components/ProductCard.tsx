@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontSize: 14,
     fontWeight: '700',
-    color: COLORS.secondary,
+    color: COLORS.primary,
   },
   addButton: {
     backgroundColor: COLORS.primary,

@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   itemPrice: {
     fontSize: 14,
     fontWeight: '700',
-    color: COLORS.secondary,
+    color: COLORS.primary,
     marginTop: 4,
   },
   quantityControls: {

@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 22,
     fontWeight: '800',
-    color: COLORS.secondary,
+    color: COLORS.primary,
   },
   divider: {
     height: 1,
